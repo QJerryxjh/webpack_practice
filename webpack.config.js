@@ -8,8 +8,14 @@ module.exports = {
     app: "./src/index.js",
     print: "./src/print.js",
   },
+  devtool: "inline-source-map",
+  devServer: {
+    contentBase: "./build",
+  },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
     new MainfestPlugin(),
     new HtmlWebpackPlugin({
       title: "webpack practice--",

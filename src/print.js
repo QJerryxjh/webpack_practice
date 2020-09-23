@@ -1,3 +1,4 @@
+console.log(222);
 export default () => {
-  console.log("----");
+  console.log("----1112222211");
 };
