@@ -6,6 +6,24 @@ const MainfestPlugin = require("webpack-manifest-plugin");
 
 module.exports = merge(common, {
   devtool: "source-map",
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module, chunks, cacheGroupKey) {
+            const moduleFileName = module
+              .identifier()
+              .split("/")
+              .reduceRight((item) => item);
+            const allChunksNames = chunks.map((item) => item.name).join("~");
+            return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+          },
+          chunks: "all",
+        },
+      },
+    },
+  },
   plugins: [
     new MainfestPlugin(),
     new UglifyJSPlugin({

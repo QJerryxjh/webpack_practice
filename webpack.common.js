@@ -15,7 +15,7 @@ module.exports = {
     }),
   ],
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[chunkhash:8].js",
     path: path.resolve(__dirname, "build"),
   },
   module: {
